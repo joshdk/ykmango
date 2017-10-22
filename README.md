@@ -32,6 +32,17 @@ for _, name := range names {
 	fmt.Printf("Found code named: %s\n", name)
 	// Found code named: aws-mfa
 }
+
+// Generate an OATH code using the given slot name.
+// You may need to touch your YubiKey device if the
+// slot is configured to require touch.
+code, err := ykman.Generate("aws-mfa")
+if err != nil {
+	panic(err.Error())
+}
+
+fmt.Printf("Your code is: %s\n", code)
+// Your code is: 150509
 ```
 
 ## License
