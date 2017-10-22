@@ -11,4 +11,8 @@ import (
 var (
 	ErrorYkmanNotFound = errors.New("ykman executable not found in $PATH")
 	ErrorNotDetected   = errors.New("no yubikey detected")
+	ErrorAborted       = errors.New("aborted")
+	ErrorRemoved       = errors.New("yubikey removed")
+	ErrorTimeout       = errors.New("timed out")
+	ErrorUnknownName   = errors.New("unknown slot title")
 )
