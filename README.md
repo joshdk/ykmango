@@ -2,6 +2,7 @@
 [![GoDoc](https://godoc.org/github.com/joshdk/ykmango?status.svg)](https://godoc.org/github.com/joshdk/ykmango)
 [![Go Report Card](https://goreportcard.com/badge/github.com/joshdk/ykmango)](https://goreportcard.com/report/github.com/joshdk/ykmango)
 [![CircleCI](https://circleci.com/gh/joshdk/ykmango.svg?&style=shield)](https://circleci.com/gh/joshdk/ykmango/tree/master)
+[![CodeCov](https://codecov.io/gh/joshdk/ykmango/branch/master/graph/badge.svg)](https://codecov.io/gh/joshdk/ykmango)
 
 # YKManGo
 
