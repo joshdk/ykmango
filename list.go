@@ -36,6 +36,11 @@ func parseList(body string, err error) ([]string, error) {
 			return nil, ErrorYubikeyNotDetected
 		}
 
+		// Case where a YubiKey isn't plugged in
+		if linesContain(lines, "Failed connecting to the YubiKey") {
+			return nil, ErrorYubikeyNotDetected
+		}
+
 		// Generic catch-all
 		return nil, err
 	}

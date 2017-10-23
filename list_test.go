@@ -85,6 +85,16 @@ func TestListParse(t *testing.T) {
 			error:         errorGeneric,
 			expectedError: ErrorYubikeyNotDetected,
 		},
+
+		{
+			title: "no yubikey detected",
+			body: `
+				Usage: ykman [OPTIONS] COMMAND [ARGS]...
+				Error: Failed connecting to the YubiKey.
+			`,
+			error:         errorGeneric,
+			expectedError: ErrorYubikeyNotDetected,
+		},
 		{
 			title:         "generic error",
 			error:         errorGeneric,
