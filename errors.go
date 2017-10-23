@@ -9,10 +9,22 @@ import (
 )
 
 var (
-	ErrorYkmanNotFound = errors.New("ykman executable not found in $PATH")
-	ErrorNotDetected   = errors.New("no yubikey detected")
-	ErrorAborted       = errors.New("aborted")
-	ErrorRemoved       = errors.New("yubikey removed")
-	ErrorTimeout       = errors.New("timed out")
-	ErrorUnknownName   = errors.New("unknown slot title")
+	// ErrorYkmanNotFound indicates that the ykman executable could not be found
+	// Installation or $PATH configuration may be needed to correct
+	ErrorYkmanNotFound = errors.New("ykman executable not found")
+
+	// ErrorYkmanInterrupted indicates that the ykman process was killed with a signal
+	ErrorYkmanInterrupted = errors.New("ykman interrupted")
+
+	// ErrorYubikeyNotDetected indicates that a YubiKey is not currently plugged in
+	ErrorYubikeyNotDetected = errors.New("yubikey not detected")
+
+	// ErrorYubikeyRemoved indicates that a YubiKey was removed while in-use
+	ErrorYubikeyRemoved = errors.New("yubikey removed")
+
+	// ErrorYubikeyTimeout indicates that a YubiKey was not touched in time to generate an OATH code
+	ErrorYubikeyTimeout = errors.New("yubikey timed out")
+
+	// ErrorSlotNameUnknown indicates that the specified OATH slot name does not exist
+	ErrorSlotNameUnknown = errors.New("slot name unknown")
 )

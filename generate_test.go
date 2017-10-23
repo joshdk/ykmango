@@ -5,9 +5,8 @@
 package ykman
 
 import (
-	//"errors"
 	"errors"
-	"fmt" //"os/exec"
+	"fmt"
 	"os/exec"
 	"testing"
 
@@ -28,7 +27,7 @@ func TestGenerateParse(t *testing.T) {
 	}{
 		{
 			title:         "empty results",
-			expectedError: ErrorUnknownName,
+			expectedError: ErrorSlotNameUnknown,
 		},
 		{
 			title: "single result",
@@ -61,7 +60,7 @@ func TestGenerateParse(t *testing.T) {
 			body: `
 				aws  1234
 			`,
-			expectedError: ErrorUnknownName,
+			expectedError: ErrorSlotNameUnknown,
 		},
 		{
 			title: "bad code format",
@@ -69,7 +68,7 @@ func TestGenerateParse(t *testing.T) {
 			body: `
 				aws  DEADBEEF
 			`,
-			expectedError: ErrorUnknownName,
+			expectedError: ErrorSlotNameUnknown,
 		},
 		{
 			title: "different name returned",
@@ -77,7 +76,7 @@ func TestGenerateParse(t *testing.T) {
 			body: `
 				aws-us-gov  123456
 			`,
-			expectedError: ErrorUnknownName,
+			expectedError: ErrorSlotNameUnknown,
 		},
 		{
 			title: "error ykman executable missing",
@@ -94,7 +93,7 @@ func TestGenerateParse(t *testing.T) {
 				Error: Failed connecting to the YubiKey.
 			`,
 			error:         errorGeneric,
-			expectedError: ErrorNotDetected,
+			expectedError: ErrorYubikeyNotDetected,
 		},
 		{
 			title: "error aborted",
@@ -104,7 +103,7 @@ func TestGenerateParse(t *testing.T) {
 				Aborted!
 			`,
 			error:         errorGeneric,
-			expectedError: ErrorAborted,
+			expectedError: ErrorYkmanInterrupted,
 		},
 		{
 			title: "error yubikey removed",
@@ -119,7 +118,7 @@ func TestGenerateParse(t *testing.T) {
 				ykman.driver_ccid.CCIDError: Failed to transmit with protocol T1. Transaction failed.
 			`,
 			error:         errorGeneric,
-			expectedError: ErrorRemoved,
+			expectedError: ErrorYubikeyRemoved,
 		},
 		{
 			title: "error yubikey timed out",
@@ -134,7 +133,7 @@ func TestGenerateParse(t *testing.T) {
 				ykman.driver_ccid.APDUError: APDU error: SW=0x6982
 			`,
 			error:         errorGeneric,
-			expectedError: ErrorTimeout,
+			expectedError: ErrorYubikeyTimeout,
 		},
 		{
 			title:         "generic error",

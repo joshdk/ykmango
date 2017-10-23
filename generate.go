@@ -9,6 +9,7 @@ import (
 	"regexp"
 )
 
+// Generate returns an OATH code from the specified slot name
 func Generate(name string) (string, error) {
 
 	cmd := exec.Command("ykman", "oath", "code", name)
@@ -32,24 +33,24 @@ func parseGenerate(body string, err error, name string) (string, error) {
 
 		// Case where a YubiKey isn't plugged in
 		if linesContain(lines, "Failed connecting to the YubiKey") {
-			return "", ErrorNotDetected
+			return "", ErrorYubikeyNotDetected
 		}
 
 		// Case where ykman was killed/interruped with a signal
 		if linesContain(lines, "Aborted!") {
-			return "", ErrorAborted
+			return "", ErrorYkmanInterrupted
 		}
 
 		// Case where ykman dumps a Python exception
 		if linesContain(lines, "Traceback (most recent call last)") {
 			// Case where yubikey is removed mid-operation
 			if linesContain(lines, "Failed to transmit with protocol") {
-				return "", ErrorRemoved
+				return "", ErrorYubikeyRemoved
 			}
 
 			// Case where YubiKey was not touched in time
 			if linesContain(lines, "APDU error") {
-				return "", ErrorTimeout
+				return "", ErrorYubikeyTimeout
 			}
 		}
 
@@ -67,5 +68,5 @@ func parseGenerate(body string, err error, name string) (string, error) {
 		}
 	}
 
-	return "", ErrorUnknownName
+	return "", ErrorSlotNameUnknown
 }
