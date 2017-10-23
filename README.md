@@ -6,13 +6,15 @@
 
 # YKManGo
 
-🔑 Prompt a YubiKey device to generate an OATH code
+🔑 Prompt a [YubiKey device](https://en.wikipedia.org/wiki/YubiKey) to generate an OATH code
 
 ## Installing
 
 You can fetch this library by running the following
 
     go get -u github.com/joshdk/ykmango
+    
+Additionally, this library has a runtime dependency on [`ykman`](https://github.com/Yubico/yubikey-manager/tree/master/ykman) which must [be installed](https://developers.yubico.com/yubikey-manager/) before use.
 
 ## Usage
 

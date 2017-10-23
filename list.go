@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// List returns all currently configured OATH slot names
 func List() ([]string, error) {
 
 	cmd := exec.Command("ykman", "oath", "code")
@@ -32,7 +33,7 @@ func parseList(body string, err error) ([]string, error) {
 
 		// Check the case where a YubiKey isn't plugged in
 		if linesContain(lines, "No YubiKey detected") {
-			return nil, ErrorNotDetected
+			return nil, ErrorYubikeyNotDetected
 		}
 
 		// Generic catch-all

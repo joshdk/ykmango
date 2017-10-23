@@ -83,7 +83,7 @@ func TestListParse(t *testing.T) {
 				Error: No YubiKey detected!
 			`,
 			error:         errorGeneric,
-			expectedError: ErrorNotDetected,
+			expectedError: ErrorYubikeyNotDetected,
 		},
 		{
 			title:         "generic error",
