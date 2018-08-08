@@ -12,7 +12,7 @@ import (
 // List returns all currently configured OATH slot names
 func List() ([]string, error) {
 
-	cmd := exec.Command("ykman", "oath", "code")
+	cmd := exec.Command("ykman", "oath", "list")
 
 	output, err := cmd.CombinedOutput()
 
@@ -48,7 +48,7 @@ func parseList(body string, err error) ([]string, error) {
 	names := make([]string, len(lines))
 
 	for index, line := range lines {
-		chunks := strings.Split(line, " ")
+		chunks := strings.Split(line, "\n")
 		names[index] = chunks[0]
 	}
 
