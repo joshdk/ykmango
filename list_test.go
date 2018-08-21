@@ -36,6 +36,13 @@ func TestListParse(t *testing.T) {
 			expectedNames: []string{"aws"},
 		},
 		{
+			title: "single result with spaces",
+			body: `
+				aws main account
+			`,
+			expectedNames: []string{"aws main account"},
+		},
+		{
 			title: "multiple results",
 			body: `
 				aws
@@ -45,29 +52,13 @@ func TestListParse(t *testing.T) {
 			expectedNames: []string{"aws", "aws-cn", "aws-us-gov"},
 		},
 		{
-			title: "single result with touch",
-			body: `
-				aws         [Touch Credential]
-			`,
-			expectedNames: []string{"aws"},
-		},
-		{
-			title: "multiple results with touch",
-			body: `
-				aws         [Touch Credential]
-				aws-cn      [Touch Credential]
-				aws-us-gov  [Touch Credential]
-			`,
-			expectedNames: []string{"aws", "aws-cn", "aws-us-gov"},
-		},
-		{
-			title: "multiple results some with touch",
+			title: "multiple results with spaces",
 			body: `
 				aws
-				aws-cn      [Touch Credential]
-				aws-us-gov
+				aws-cn
+				aws main account
 			`,
-			expectedNames: []string{"aws", "aws-cn", "aws-us-gov"},
+			expectedNames: []string{"aws", "aws-cn", "aws main account"},
 		},
 		{
 			title: "ykman executable missing",
